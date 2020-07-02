@@ -11,6 +11,7 @@ def get_embed_planners():
     if response.status_code != 200:
         pass
         #handle bad request
+    print(response.json())
     return response.json()
 
 def check_embed_planner(embed):
