@@ -28,7 +28,7 @@ DEBUG = False
 if DEBUG:
     ALLOWED_HOSTS = ['*']
 else:
-    ALLOWED_HOSTS = ['68.183.117.103']
+    ALLOWED_HOSTS = ['68.183.117.103', 'localhost']
 
 
 # Application definition
