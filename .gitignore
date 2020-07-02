@@ -5,4 +5,3 @@ settings.py
 env_variables.py
 static/
 media/
-BotAdmin/db.sqlite3
