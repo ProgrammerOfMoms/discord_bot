@@ -11,4 +11,4 @@ BOT_ID_CHANNEL = int(os.environ["DC_BOT_ID_CHANNEL"])
 
 
 
-HOST = "http://localhost:8000/"
+HOST = "http://localhost/"
