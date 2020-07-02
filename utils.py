@@ -85,7 +85,9 @@ def bind_scenario(user_id, scenario_id):
 def get_next_msg(user_id):
     URL = HOST + "user/scenario/next/"
     body = {"user_id": user_id}
-    resp = requests.post(URL, data=body).json()
+    resp = requests.post(URL, data=body)
+    print(resp.status_code)
+    resp.json()
     if resp["q"] is not None:
         return resp["q"]
     return DEFAULT_MSG
