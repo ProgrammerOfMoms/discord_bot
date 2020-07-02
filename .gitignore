@@ -5,3 +5,5 @@ settings.py
 env_variables.py
 static/
 media/
+db.sqlite3
+>>>>>>> 1a6fad543a6a11771ec4489abfce8cfa3ee7fea9
