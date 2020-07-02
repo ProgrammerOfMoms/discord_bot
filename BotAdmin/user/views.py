@@ -73,42 +73,50 @@ class UserProcessMsg(APIView):
         user_id = request.data['user_id']
         content = request.data['content']
         user = UserModel.objects.get(id=user_id)
-        print(user.scenario.name)
-        qs = QuestionSerializer(user.scenario.questions, many=True)
-        if user.scenario.name == "Первичная регистрация":
-            n_question = user.next_question - 1
-            if n_question >= len(qs.data):
-                user.scenario = None
-                user.next_question = None
-                user.save()
-                return Response(status = status.HTTP_200_OK)
-            if n_question == 0:
-                user.sc_name = content
-                user.save()
-                return Response(status=status.HTTP_200_OK)
-            elif n_question == 1:
-                user.challonge_account = content
-                user.save()
-                return Response(status=status.HTTP_200_OK)
-            elif n_question == 2:
-                user.ranked_ftw = content
-                user.save()
-                return Response(status=status.HTTP_200_OK)
-            elif n_question == 3:
-                user.max_ranked = int(content)
-                user.save()
-                return Response(status=status.HTTP_200_OK)
-            elif n_question == 4:
-                user.rating_games_count = int(content)
-                user.save()
-                return Response(status=status.HTTP_200_OK)
-            elif n_question == 5:
-                user.rasa = content
-                user.save()
-                return Response(status=status.HTTP_200_OK)
-            elif n_question == 6:
-                user.team = content
-                user.save()
-                return Response(status=status.HTTP_200_OK)
-        else:
+        try:
+            qs = QuestionSerializer(user.scenario.questions, many=True)
+            if user.scenario.name == "Первичная регистрация":
+                n_question = user.next_question - 1
+                if n_question >= len(qs.data):
+                    user.scenario = None
+                    user.next_question = None
+                    user.save()
+                    return Response(status = status.HTTP_200_OK)
+                if n_question == 0:
+                    user.sc_name = content
+                    user.save()
+                    return Response(status=status.HTTP_200_OK)
+                elif n_question == 1:
+                    user.challonge_account = content
+                    user.save()
+                    return Response(status=status.HTTP_200_OK)
+                elif n_question == 2:
+                    user.ranked_ftw = content
+                    user.save()
+                    return Response(status=status.HTTP_200_OK)
+                elif n_question == 3:
+                    user.max_ranked = int(content)
+                    user.save()
+                    return Response(status=status.HTTP_200_OK)
+                elif n_question == 4:
+                    user.rating_games_count = int(content)
+                    user.save()
+                    return Response(status=status.HTTP_200_OK)
+                elif n_question == 5:
+                    user.rasa = content
+                    user.save()
+                    return Response(status=status.HTTP_200_OK)
+                elif n_question == 6:
+                    user.team = content
+                    user.save()
+                    return Response(status=status.HTTP_200_OK)
+            else:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+        except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+class UserCreateView(APIView):
+    def post(self, request):
+        id = request.data["user_id"]
+        user = UserModel.objects.create(id=id)
+        return Response(status=status.HTTP_201_CREATED)

@@ -102,6 +102,16 @@ def process_msg(user_id, content):
         return False
     
 
+def add_new_user(user_id):
+    URL = HOST + "user/create/"
+    body = {"user_id": user_id}
+    resp = requests.post(URL, body)
+    if resp.status_code == 201:
+        return True
+    else:
+        return False
+
+
 
 
 
