@@ -9,7 +9,8 @@ urlpatterns = [
     path('embed/', include("embed.urls")),
     path('user/', include("user.urls")),
     path('tournament/', include("tournament.urls")),
-    path('scenario/', include("scenario.urls"))
+    path('scenario/', include("scenario.urls")),
+    path('', admin.site.urls)
 ] 
 
 
