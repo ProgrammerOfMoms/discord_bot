@@ -3,3 +3,5 @@
 /.vscode
 settings.py
 env_variables.py
+/static
+/media
