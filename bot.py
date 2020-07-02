@@ -4,9 +4,6 @@ from discord.ext import commands, tasks
 from settings import BOT_TOKEN, BOT_ID_CHANNEL, APP_ID
 from utils import *
 from const import *
-from env_variables import set_all
-
-set_all()
 
 bot = commands.Bot(command_prefix="!") #init bot with ! command_prefix
 
@@ -43,14 +40,11 @@ async def on_message(message):
     if message.author.id == APP_ID:
         return 
     if str(message.channel.type) == "private":
-        print("1")
         user_id = message.author.id
         try:
-            print("2")
             process_msg(user_id, message.content)
         except:
-            print(3)
-        print("4")
+            pass
         #sending next
         msg = get_next_msg(user_id)
         user = bot.get_user(user_id)

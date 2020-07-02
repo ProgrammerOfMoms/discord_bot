@@ -1,4 +1,7 @@
 import os
+from env_variables import set_all
+
+set_all()
 
 SERVER_ID = int(os.environ["DC_SERVER_ID"])
 APP_ID = int(os.environ["DC_APP_ID"])
